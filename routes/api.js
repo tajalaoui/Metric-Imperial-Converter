@@ -13,15 +13,18 @@ module.exports = function (app) {
     const value = convertHandler.getNum(input)
     const unit = convertHandler.getUnit(input)
 
-    // unit !== "gal" ||
-    // unit !== "L" ||
-    // unit !== "lbs" ||
-    // unit !== "kg" ||
-    // unit !== "mi" ||
-    // unit !== "km"
-
     if (!value || isNaN(value)) return res.send("invalid number")
-    if (!unit || typeof unit !== "string") return res.send("invalid unit")
+    if (
+      !unit ||
+      typeof unit !== "string" ||
+      unit !== "gal" ||
+      unit !== "L" ||
+      unit !== "lbs" ||
+      unit !== "kg" ||
+      unit !== "mi" ||
+      unit !== "km"
+    )
+      return res.send("invalid unit")
     if (!value && !unit) return res.send("invalid number and unit")
 
     const returnUnit = convertHandler.getReturnUnit(unit)
