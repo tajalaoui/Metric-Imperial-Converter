@@ -1,6 +1,6 @@
-import { validateNum, validateUnit } from "../helpers/validate"
+// import { validateNum, validateUnit } from "../helpers/validate"
 
-// const validate = require("../helpers/validate")
+const validate = require("../helpers/validate")
 
 function ConvertHandler() {
   const inputRegx = /[a-z]+|[^a-z]+/gi
@@ -10,7 +10,7 @@ function ConvertHandler() {
 
     // if (result.length === 0) result = 1
 
-    validateNum(result)
+    validate.validateNum(result)
 
     if (result.toString().includes("/")) {
       let values = result.toString().split("/")
@@ -30,7 +30,7 @@ function ConvertHandler() {
 
     result = input.match(inputRegx)[1]
 
-    validateUnit(result)
+    validate.validateUnit(result)
 
     if (!result) result = input.match(inputRegx)[0]
 

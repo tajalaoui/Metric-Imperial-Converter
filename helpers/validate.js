@@ -13,11 +13,19 @@ function validateNum(value = 1) {
   // }
   // return found
 
-  if (isNaN(value)) return false
+  if (isNaN(value)) {
+    return false
+  } else {
+    return
+  }
 }
 
 function validateUnit(unit) {
-  if (!unit || typeof unit !== "string" || !allowedUnits.includes(unit)) return false
+  if (!unit || typeof unit !== "string" || !allowedUnits.includes(unit)) {
+    return false
+  } else {
+    return
+  }
 }
 
 // const units = {
@@ -31,4 +39,6 @@ function validateUnit(unit) {
 //   weight: {},
 //   liquid: {},
 // }
-export { validateNum, validateUnit }
+// export { validateNum, validateUnit }
+
+module.exports = { validateNum, validateUnit }
