@@ -1,5 +1,7 @@
 import { validateNum, validateUnit } from "../helpers/validate"
 
+// const validate = require("../helpers/validate")
+
 function ConvertHandler() {
   const inputRegx = /[a-z]+|[^a-z]+/gi
 

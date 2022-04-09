@@ -1,6 +1,6 @@
 const allowedUnits = ["gal", "L", "mi", "km", "lbs", "kg"]
 
-this.validateNum = (value = 1) => {
+function validateNum(value = 1) {
   // let found = false
   // for (const u in this.units) {
   //   if (found) {
@@ -16,7 +16,7 @@ this.validateNum = (value = 1) => {
   if (isNaN(value)) return false
 }
 
-this.validateUnit = (unit) => {
+function validateUnit(unit) {
   if (!unit || typeof unit !== "string" || !allowedUnits.includes(unit)) return false
 }
 
