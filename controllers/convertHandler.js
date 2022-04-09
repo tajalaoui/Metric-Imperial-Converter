@@ -1,52 +1,36 @@
+import { validateNum, validateUnit } from "../helpers/validate"
+
 function ConvertHandler() {
   const inputRegx = /[a-z]+|[^a-z]+/gi
 
-  // const units = {
-  //   distance: {
-  //     supported_units: ["km", "mi"],
-  //     imperial: "miles",
-  //     metric: "kilometers",
-  //     to_metric: (input) => input * 2,
-  //     to_imperial: (input) => input * 3,
-  //   },
-  //   weight: {},
-  //   liquid: {},
-  // }
-
-  this.validate = (value, unit) => {
-    try {
-      // TODO: eval the condition
-      if (!unit || unit != "gal") {
-        throw "invalid unit"
-      }
-    } catch (e) {
-      return e
-    }
-
-    // let found = false
-
-    // for (const u in this.units) {
-    //   if (found) {
-    //     continue;
-    //   }
-    //   found = u.supported_units.includes(unit)
-    // }
-
-    // if (!found) {
-    //   throw "invalid unit"
-    // }
-
-    return found
-  }
-
   this.getNum = function (input) {
     let result = input.match(inputRegx)[0]
+
+    // if (result.length === 0) result = 1
+
+    validateNum(result)
+
+    if (result.toString().includes("/")) {
+      let values = result.toString().split("/")
+      if (values.length != 2) {
+        return "invalid number"
+      }
+      values[0] = parseFloat(values[0])
+      values[1] = parseFloat(values[1])
+      result = parseFloat((values[0] / values[1]).toFixed(5))
+    }
 
     return result
   }
 
   this.getUnit = function (input) {
-    let result = input.match(inputRegx)[1]
+    let result
+
+    result = input.match(inputRegx)[1]
+
+    validateUnit(result)
+
+    if (!result) result = input.match(inputRegx)[0]
 
     result = result.toLowerCase()
 

@@ -9,19 +9,14 @@ module.exports = function (app) {
   app.get("/api/convert", async (req, res) => {
     const { input } = req.query
 
-    // Remove .toLowerCase()
     const value = convertHandler.getNum(input)
     const unit = convertHandler.getUnit(input)
 
-    const allowedUnits = ["gal", "L", "mi", "km", "lbs", "kg"]
-
-    if (!value || isNaN(value)) return res.send("invalid number")
-    if (!unit || typeof unit !== "string" || !allowedUnits.includes(unit))
-      return res.send("invalid unit")
     if (!value && !unit) return res.send("invalid number and unit")
+    if (!value) return res.send("invalid number")
+    if (!unit) return res.send("invalid unit")
 
     const returnUnit = convertHandler.getReturnUnit(unit)
-    // *
     const initSpellOutUnit = convertHandler.initSpellOutUnit(unit)
     const spellOutUnit = convertHandler.spellOutUnit(unit)
     const convert = convertHandler.convert(value, unit)
